@@ -1,9 +1,348 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Fabi</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fabi | Personal Landing Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --panel: #ffffff;
+      --panel-soft: #f8fafc;
+      --text: #111827;
+      --muted: #4b5563;
+      --brand: #0f766e;
+      --brand-strong: #115e59;
+      --line: #dbe4e8;
+      --shadow: 0 20px 45px rgba(17, 24, 39, 0.1);
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, #ccfbf1 0%, transparent 35%),
+        radial-gradient(circle at 90% 20%, #fde68a 0%, transparent 35%),
+        linear-gradient(150deg, #f8fafc, #eef2ff 50%, #f3f4f6);
+      min-height: 100vh;
+    }
+
+    .page {
+      width: min(1120px, 92vw);
+      margin: 42px auto 56px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-main,
+    .hero-side {
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-main {
+      padding: 38px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ccfbf1;
+      color: #134e4a;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 700;
+      font-size: 0.83rem;
+      letter-spacing: 0.01em;
+    }
+
+    .hero h1 {
+      margin: 16px 0 8px;
+      font-family: "Space Grotesk", "Manrope", sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0 0 24px;
+      color: var(--muted);
+      max-width: 52ch;
+      line-height: 1.6;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-width: 128px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 12px 16px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--brand);
+      color: #ffffff;
+      box-shadow: 0 12px 24px rgba(15, 118, 110, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--brand-strong);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      color: #0f172a;
+      background: #ffffff;
+      border-color: var(--line);
+    }
+
+    .btn-secondary:hover {
+      background: var(--panel-soft);
+      transform: translateY(-2px);
+    }
+
+    .hero-side {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stat {
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .stat h3 {
+      margin: 0;
+      font-size: 1.4rem;
+      font-family: "Space Grotesk", "Manrope", sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    .stat p {
+      margin: 6px 0 0;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .section-title {
+      margin: 34px 0 14px;
+      font-family: "Space Grotesk", "Manrope", sans-serif;
+      font-size: 1.45rem;
+      letter-spacing: -0.02em;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--panel);
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 24px rgba(17, 24, 39, 0.06);
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .timeline {
+      margin-top: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 14px;
+      align-items: start;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+
+    .timeline-item .year {
+      font-family: "Space Grotesk", "Manrope", sans-serif;
+      font-weight: 700;
+      color: #155e75;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(1120px, 94vw);
+        margin-top: 18px;
+      }
+
+      .hero-main,
+      .hero-side {
+        padding: 22px;
+      }
+
+      .stat-grid,
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <h1>It works 🚀</h1>
+  <main class="page">
+    <section class="hero">
+      <article class="hero-main">
+        <span class="badge">Open for collaboration</span>
+        <h1>Fabian Flores</h1>
+        <p>
+          Product-minded software engineer focused on fast, reliable web experiences.
+          I build polished interfaces, ship production features, and turn ideas into
+          products people actually use.
+        </p>
+        <div class="links">
+          <a class="btn btn-primary" href="#" aria-label="Open portfolio">Portfolio</a>
+          <a class="btn btn-secondary" href="#" aria-label="Open GitHub profile">GitHub</a>
+          <a class="btn btn-secondary" href="#" aria-label="Open LinkedIn profile">LinkedIn</a>
+          <a class="btn btn-secondary" href="#" aria-label="Send email">Contact</a>
+        </div>
+      </article>
+
+      <aside class="hero-side" aria-label="Highlights">
+        <div class="stat-grid">
+          <section class="stat">
+            <h3>6+ yrs</h3>
+            <p>Engineering experience</p>
+          </section>
+          <section class="stat">
+            <h3>25+</h3>
+            <p>Projects delivered</p>
+          </section>
+          <section class="stat">
+            <h3>12</h3>
+            <p>Teams partnered</p>
+          </section>
+          <section class="stat">
+            <h3>99.9%</h3>
+            <p>Service reliability focus</p>
+          </section>
+        </div>
+      </aside>
+    </section>
+
+    <h2 class="section-title">About & Expertise</h2>
+    <section class="cards" aria-label="General information cards">
+      <article class="card">
+        <h3>What I Do</h3>
+        <p>
+          Build end-to-end digital products from wireframes to production-grade code,
+          with strong emphasis on UX, performance, and maintainability.
+        </p>
+      </article>
+      <article class="card">
+        <h3>Core Stack</h3>
+        <p>
+          TypeScript, React, Node.js, Next.js, and cloud-native tooling for scalable
+          and testable applications.
+        </p>
+      </article>
+      <article class="card">
+        <h3>How I Work</h3>
+        <p>
+          Structured collaboration, concise communication, and iterative delivery with
+          measurable outcomes over output volume.
+        </p>
+      </article>
+    </section>
+
+    <h2 class="section-title">Quick Timeline</h2>
+    <section class="timeline" aria-label="Career timeline">
+      <article class="timeline-item">
+        <span class="year">2024 - Now</span>
+        <p>Leading frontend architecture and design system work for product teams.</p>
+      </article>
+      <article class="timeline-item">
+        <span class="year">2021 - 2024</span>
+        <p>Delivered full-stack features that improved conversion and user retention.</p>
+      </article>
+      <article class="timeline-item">
+        <span class="year">2019 - 2021</span>
+        <p>Built internal tools and analytics dashboards to support operations.</p>
+      </article>
+    </section>
+  </main>
 </body>
 </html>
